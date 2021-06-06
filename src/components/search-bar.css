@@ -1,0 +1,29 @@
+.search-wrapper {
+    display: flex;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .search-wrapper .search-icon {
+    justify-content: end;
+    align-self: center;
+    margin-right: 15px;
+  }
+  
+  .search-wrapper .search-bar {
+    width: 100%;
+    padding: 12px;
+    margin-left: 10px;
+  
+    color: #1f1818;
+    font-size: 1.5rem;
+    font-weight: 500;
+    
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;  
+    transition: 0.4s ease;
+  }
