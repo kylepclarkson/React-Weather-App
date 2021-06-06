@@ -27,7 +27,7 @@ function App() {
     if (response.ok) {
       const data = await response.json();
       setCityWeather(data);
-      getNeighboringWeatherData(data.coord)
+      getNeighboringWeatherData(data.coord);
     } else {
       // TODO display error.
       console.log("Error fetching data.");
@@ -35,17 +35,17 @@ function App() {
     setLoadingData(false);
   };
 
-  const getNeighboringWeatherData = async ({lat, lon}) => {
+  const getNeighboringWeatherData = async ({ lat, lon }) => {
     const response = await fetch(
       `${api.API_BASE_URL}find?lat=${lat}&lon=${lon}&cnt=${NUM_NEIGHBORING_CITIES}&appid=${api.API_KEY}`
     );
     if (response.ok) {
       const data = await response.json();
-      console.log('Neighbors', data);
+      console.log("Neighbors", data);
     } else {
-      console.log("Error fetching data for cities.")
+      console.log("Error fetching data for cities.");
     }
-  }
+  };
 
   // Converts wind direction (0,360 deg) to compass direction (90 E, 180 S, etc.)
   const getWindDirection = (deg) => {
@@ -84,16 +84,19 @@ function App() {
             getWeatherData={getWeatherData}
           />
           {cityWeather ? (
-            <Weather 
-              cityWeather={cityWeather}
-            />
+            <Weather cityWeather={cityWeather} />
           ) : (
             // Empty
             ""
           )}
         </div>
         <div className="col-md-8 col-sm-12 map">
-
+          {neighborWeather ? (
+            <div></div>
+          ) : (
+            // Empty
+            ""
+          )}
         </div>
       </div>
     </div>
