@@ -49,12 +49,12 @@ const Weather = ({cityWeather}) => {
         <div className="col">Wind {Math.round(cityWeather.wind.speed)}m/s</div>
         <div className="col">{getWindDirection(cityWeather.wind.deg)}</div>
       </div>
-      <div className="row mb-4 justify-content-between align-items-center">
+      {/* <div className="row mb-4 justify-content-between align-items-center">
         <div className="col">
           Sunrise {convertTime(cityWeather.sys.sunrise)}
         </div>
         <div className="col">Sunset {convertTime(cityWeather.sys.sunset)}</div>
-      </div>
+      </div> */}
     </div>
   );
 };

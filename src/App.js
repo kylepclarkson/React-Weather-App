@@ -1,4 +1,6 @@
 import React from "react";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 import api from "./weather_api.js";
@@ -7,7 +9,8 @@ import SearchBar from "./components/SearchBar";
 import Weather from "./components/Weather";
 import Map from "./components/Map";
 
-function App() {
+toast.configure()
+const App = () => {
   // The city to query weather data.
   const [city, setCity] = React.useState("");
   // The weather for the queried city.
@@ -19,15 +22,21 @@ function App() {
 
   // Fetch weather data from API using queried city.
   const getWeatherData = async () => {
+    // Show alert using this function.
     const response = await fetch(
       `${api.API_BASE_URL}weather?q=${city}&units=metric&appid=${api.API_KEY}`
     );
     if (response.ok) {
       const data = await response.json();
       setCityWeather(data);
+      setCity("")
       getNeighboringWeatherData(data.coord);
     } else {
-      // TODO display error.
+      // Display toast warning message. 
+      toast.warn(`Cannot find the city ${city}!`, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000
+      })
       console.log("Error fetching data.");
     }
   };
@@ -47,7 +56,7 @@ function App() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-4 col-sm-12 city-weather">
+        <div className="col-md-4 col-sm-12 h-100 city-weather">
           <SearchBar
             city={city}
             setCity={setCity}
@@ -75,6 +84,9 @@ function App() {
                     A weather app built with React, Leaflet, and the OpenWeather
                     API.
                   </p>
+                  <p>
+                    <small>Created by <a href="https://kyleclarkson.ca" className="">Kyle Clarkson</a></small>
+                  </p>
                 </div>
               </div>
             </div>
@@ -83,6 +95,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
