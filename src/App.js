@@ -43,7 +43,6 @@ function App() {
     if (response.ok) {
       const data = await response.json();
       setNeighborWeather(data);
-      console.log("Neighbors", data);
     } else {
       console.log("Error fetching data for cities.");
     }

@@ -4,7 +4,9 @@
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   font-family: 'montseratt', sans-serif;
+  background: rgb(40,85,9);
+  background: linear-gradient(90deg, rgba(40,85,9,1) 0%, rgba(92,163,43,1) 100%);
 }
 
