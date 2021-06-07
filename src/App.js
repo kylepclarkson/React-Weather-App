@@ -5,7 +5,7 @@ import api from "./weather_api.js";
 
 import SearchBar from "./components/SearchBar";
 import Weather from "./components/Weather";
-import Map from "./components/Map"
+import Map from "./components/Map";
 
 function App() {
   // The city to query weather data.
@@ -14,14 +14,11 @@ function App() {
   const [cityWeather, setCityWeather] = React.useState(null);
   // Weather of neighboring cities.
   const [neighborWeather, setNeighborWeather] = React.useState(null);
-  // Loading data
-  const [loadingData, setLoadingData] = React.useState(false);
 
   const NUM_NEIGHBORING_CITIES = 20;
 
   // Fetch weather data from API using queried city.
   const getWeatherData = async () => {
-    setLoadingData(true);
     const response = await fetch(
       `${api.API_BASE_URL}weather?q=${city}&units=metric&appid=${api.API_KEY}`
     );
@@ -33,7 +30,6 @@ function App() {
       // TODO display error.
       console.log("Error fetching data.");
     }
-    setLoadingData(false);
   };
 
   const getNeighboringWeatherData = async ({ lat, lon }) => {
@@ -64,15 +60,24 @@ function App() {
             ""
           )}
         </div>
-        <div className="col-md-8 col-sm-12 map">
+        <div className="col-md-8 col-sm-12 vh-100">
           {neighborWeather ? (
             <Map
               cityCoords={cityWeather.coord}
               neighborWeather={neighborWeather}
             />
           ) : (
-            // Empty
-            ""
+            <div className="d-flex h-100 justify-content-center align-items-center">
+              <div className="placeholder-wrapper">
+                <div className="text-center">
+                  <h2>React Weather</h2>
+                  <p>
+                    A weather app built with React, Leaflet, and the OpenWeather
+                    API.
+                  </p>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { DivIcon, fitBounds } from "leaflet";
+import { DivIcon } from "leaflet";
 // CSS
 import "leaflet/dist/leaflet.css";
 import "./map.css";
@@ -14,7 +14,6 @@ const Map = ({ cityCoords, neighborWeather }) => {
       city.coord.lat,
       city.coord.lon,
     ]);
-    console.log("Bounds: ", bounds);
     map.flyToBounds(bounds);
     return null;
   };
